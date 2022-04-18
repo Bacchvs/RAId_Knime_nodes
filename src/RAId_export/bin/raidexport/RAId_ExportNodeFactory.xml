@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="./logo.png" type="Source" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+    <name>RAId_Export</name>
+    
+    <shortDescription>
+        A node that permit you to traduce RAId output files into a single file using a R script.
+    </shortDescription>
+    
+    <fullDescription>
+        <intro>A node that permit you to traduce RAId output files into a single file using a R script.</intro>
+        
+        
+        <option name="Path-to-R">the folder were R is.</option>
+        <option name="Sufix">Sufix of the output file.</option>
+        <!-- possibly more options that can also be grouped by tabs -->
+        <!--
+        <tab name="Standard Options">
+            <option name="short name of first option (like in the dialog)">description of first option</option>
+            <option name="short name of second option (like in the dialog)">description of second option</option>
+        </tab>
+        <tab name="Advanced Options">
+            <option name="short name of first advanced option (like in the dialog)">description of first advanced option</option>
+        </tab>
+        -->
+    </fullDescription>
+    
+    <ports>
+        <inPort index="0" name="input RAId file">This port is directly linked with the output of RAId_Extension. It contains the path and the prefix of the files.</inPort>
+        <!-- possibly more input ports here-->
+        <outPort index="0" name="output traduced RAId file">This port contain a link to the generated file.</outPort>
+        <!-- possibly more output ports here-->
+    </ports>    
+    <views>
+        <view index="0" name="name of first view">Description of first view...</view>
+        <!--view index="1" name="name of second view">Description of second view...</view-->
+    </views>
+</knimeNode>

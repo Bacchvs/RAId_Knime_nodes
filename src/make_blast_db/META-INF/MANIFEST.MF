@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Make_Blast_DB-Node extension for KNIME Workbench
+Bundle-SymbolicName: makeblastdb; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: make_blast_db.jar
+Bundle-Activator: makeblastdb.Make_Blast_DBNodePlugin
+Bundle-Vendor: Arnaud Sénécaut
+Require-Bundle: org.eclipse.core.runtime,
+ org.knime.workbench.core,
+ org.knime.workbench.repository,
+ org.knime.base
+Bundle-ActivationPolicy: lazy
+Export-Package: makeblastdb
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+ <extension
+         point="org.knime.workbench.repository.categories">
+      <category
+            description="Nodes for RAId"
+            icon="icons/RAId.png"
+            level-id="RAId"
+            name="RAId"
+            path="/"/>
+   </extension> 
+   
+   <extension
+         point="org.knime.workbench.repository.nodes">
+      <node
+            category-path="/RAId"
+            factory-class="org.senecaut.ExtensionNodeFactory"
+            id="org.senecaut.ExtensionNodeFactory"/>
+   </extension>  
+</plugin>
