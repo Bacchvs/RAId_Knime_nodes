@@ -4,5 +4,5 @@ En effet, ce logiciel est tout sauf adapté aux biologistes de base qui l'abando
 Knime est un logiciel de workflows qui permet de lier plusieurs algorithmes les uns aux autres d'une maniere graphique et simple d'utilisation. 
 En associant les deux on peu créer un traitements pour plusieurs fichiers, là où RAId n'en traitait qu'un. 
 ## Auteurs
-* Arnaud Sénécaut :_développement java/KNIME._ 
-* Nicolas Sénécaut :_développement C++, consultant_
+* ```Arnaud Sénécaut``` _développement java/KNIME._ 
+* ```Nicolas Sénécaut``` _consultant, développement C++_

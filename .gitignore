@@ -1,0 +1,4 @@
+#  Les fichiers temporaires word
+**/~*
+# Les fichier discriminés volontairement (qui n'ont rien à faire sur le git)
+**/#*
