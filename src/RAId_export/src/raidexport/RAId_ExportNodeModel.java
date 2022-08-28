@@ -22,11 +22,18 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.port.PortObject;
 import org.knime.core.node.port.PortObjectSpec;
 import org.knime.core.node.port.PortType;
+
+
+import org.senecaut.util.URIUtil;
+import org.senecaut.util.WslUtil;
  
+
+
+
 /**
  * traduce R output files into one single file using R.
  *
- * @author Arnaud Sénécaut
+ * @author Arnaud Sï¿½nï¿½caut
  */
 public class RAId_ExportNodeModel extends NodeModel {
     
@@ -55,13 +62,13 @@ public class RAId_ExportNodeModel extends NodeModel {
 	/**execute of PortObject function*/
 	protected PortObject[] execute(final PortObject[] inData, final ExecutionContext exec)
 	throws Exception {
-		//traduis l'entrée en URI via URIUtil
+		//traduis l'entrï¿½e en URI via URIUtil
 		URI input = URIUtil.portToURI(inData[0]);
 		
 		//appelle la fonction en commun avec la dataCell version
 		URI output = meta_exec(input);
 		
-		//retourne un PortObject grace à URIUtil
+		//retourne un PortObject grace ï¿½ URIUtil
 		return new PortObject[] {URIUtil.uriToPort(output)};	
 	}
 	
@@ -107,22 +114,22 @@ public class RAId_ExportNodeModel extends NodeModel {
      */
 	private URI meta_exec(URI inputRAIdFiles) throws Exception {
 		LOGGER.warn("Lancement de RAId_Export !");
-		//récupere le chemin du fichier
+		//rï¿½cupere le chemin du fichier
 		File RAIdFile = new File(inputRAIdFiles);
 		 
 		
-		//pour le chercher intégré dans le jar mais ne marche pas pour l'instant
+		//pour le chercher intï¿½grï¿½ dans le jar mais ne marche pas pour l'instant
 		//File RAId_Export = new File (FileLocator.toFileURL(new URL(getClass().getResource("RAId_Export").toString().replaceAll(" ", "%20"))).toURI());
 		
 		
-		///Lance la commande d'éxécution de R dans le répertoire spécifié
+		///Lance la commande d'ï¿½xï¿½cution de R dans le rï¿½pertoire spï¿½cifiï¿½
 		 ProcessBuilder pb = new ProcessBuilder(
 						"wsl.exe", 
 						//chemin de RAId_Export
 						//toWslPath(RAId_Export.getPath()),
 						"./RAId_Export",
 						//chemin du dossier contenant les fichier de RAId
-						toWslPath(RAIdFile.getParent()) + "/",
+						WslUtil.toWslPath(RAIdFile.getParent()) + "/",
 						//le nom du fichier
 						RAIdFile.getName(), 
 						//the sufixe of the file
@@ -130,7 +137,7 @@ public class RAId_ExportNodeModel extends NodeModel {
 						//the evalue
 						setting_EValue.getDoubleValue()+" ",
 						//the fasta file
-						toWslPath(setting_fastaPath.getStringValue())						
+						WslUtil.toWslPath(setting_fastaPath.getStringValue())						
 						);
 		//pb.directory(new File("D:\\StageCNRS\\workSpace\\RAId_Export\\bin\\raidexport"));
 		Process proc = pb.start();
@@ -150,7 +157,7 @@ public class RAId_ExportNodeModel extends NodeModel {
 				
 		LOGGER.warn("Valeur de sortie : " + proc.exitValue());
 		
-		//crée un URI vers le fichier créé
+		//crï¿½e un URI vers le fichier crï¿½ï¿½
 		URI finalOutputFile = URI.create(inputRAIdFiles.getPath() + "." + setting_sufix.getStringValue());
 		
 		return finalOutputFile;
@@ -209,31 +216,5 @@ public class RAId_ExportNodeModel extends NodeModel {
 	@Override
 	protected void reset() {
 	}
-	
-	//Traduis un chemin windows en chemin wsl (exemple : D:\Users\Arnaud -> /mnt/d/Users/Arnaud) - Arnaud Sénécaut
-		private String toWslPath (String path){
-			System.out.print("#### utilisation de toWslPath : " + path + "  --->  ");
-
-			String wslPath = "/mnt/";
-
-			String Disque = String.valueOf(path.charAt(0)); // C, D, E, F ....
-
-			if (!path.contains(":\\")){
-				//si on entre juste le nom du fichier sans le chemin, ca le met dans /tmp
-				// :\ est le discriminant que j'ai choisis, mais ce n'est pas le meilleur.
-				wslPath = "/tmp/" + path;
-			}
-			else {
-				path = path.replaceAll(Disque + ":", ""); // retire le D: du chemin en laissant le \
-				path = path.replace('\\', '/'); //remplace les \ par des /
-				wslPath += Disque.toLowerCase() + path; // on se retrouve avec /mnt/disqueEnMinuscule/reste/du/chemin
-			}
-
-					System.out.println(wslPath);
-			return wslPath;
-		}
-
-
-	
 }
 
