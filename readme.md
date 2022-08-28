@@ -1,3 +1,5 @@
+![alt text](./RAIdKnimeNodesBanner.png)
+
 # RAId KNIME Nodes
 Le projet vise au développment de noeuds Knime en vue de simplifier l'utilisation du logiciel RAId du NCBI.
 En effet, ce logiciel est tout sauf adapté aux biologistes de base qui l'abandonnent au profit de logiciels concurents, ce qui est une erreur car RAId est le meilleur dans son domaine.
